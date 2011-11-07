@@ -26,7 +26,7 @@ WDTSSEL     equ 0x0004 ;source select
 WDTIS3      equ 0x0003 ;interval 3 (div 32768)
 WDTIS2      equ 0x0002 ;interval 2 (div 8192)
 WDTIS1      equ 0x0001 ;interval 1 (div 512)
-WDTIS0      equ 0x0000 ;interval 0 (div 64) - doesn't do anything.
+WDTIS0      equ 0x0000 ;interval 0 (div 64)
 
 ;clock module
 DCOCTL      equ 0x0056 ;DCO control register
@@ -36,18 +36,34 @@ BCSCTL3     equ 0x0053
 IE1         equ 0x0000
 IFG1        equ 0x0002
 
-;timer A
-TACTL       equ 0x0160
-TAR         equ 0x0170
-TACCTL0     equ 0x0162
-TACCR0      equ 0x0172
-TACCTL1     equ 0x0164
-TACCR1      equ 0x0174
-TACCTL2     equ 0x0166
-TACCR2      equ 0x0176
-TAIV        equ 0x012E
+;timer A0
+#ifdef TA0
+TA0R         equ 0x0170
+TA0CCR0      equ 0x0172
+TA0CCR1      equ 0x0174
+TA0CCR2      equ 0x0176
+TA0IV        equ 0x012E
+#endif
+
+;timer A1
+#ifdef TA1
+TA1R         equ 0x0190
+TA1CCR0      equ 0x0192
+TA1CCR1      equ 0x0194
+TA1CCR2      equ 0x0196
+TA1IV        equ 0x011E
+#endif
 
 ;timer config
+    ;register
+#ifdef TA0
+TA0CTL       equ 0x0160
+#endif
+#ifdef TA1
+TA1CTL       equ 0x0180
+#endif
+
+    ;flags
 TASSEL3     equ 0x0300
 TASSEL2     equ 0x0200
 TASSEL1     equ 0x0100
@@ -64,7 +80,19 @@ TACLR       equ 0x0004
 TAIE        equ 0x0002
 TAIFG       equ 0x0001
 
-;capture compare modes
+;capture compare
+    ;registers
+#ifdef TA0
+TA0CCTL0     equ 0x0162
+TA0CCTL1     equ 0x0164
+TA0CCTL2     equ 0x0166
+#endif
+#ifdef TA1
+TA1CCTL0     equ 0x0182
+TA1CCTL1     equ 0x0184
+TA1CCTL2     equ 0x0186
+#endif
+    ;flags
 CM3         equ 0xC000
 CM2         equ 0x8000
 CM1         equ 0x4000
@@ -91,13 +119,36 @@ COV         equ 0x0002
 CCIFG       equ 0x0001
 
 ;port stuff
+;P1
+#ifdef P1
+P1IN        equ 0x0020
 P1OUT       equ 0x0021
 P1DIR       equ 0x0022
-PIN8        equ 0x80
-PIN7        equ 0x40
-PIN6        equ 0x20
-PIN5        equ 0x10
-PIN4        equ 0x08
-PIN3        equ 0x04
-PIN2        equ 0x02
-PIN1        equ 0x01
+P1IFG       equ 0x0023
+P1IES       equ 0x0024
+P1IE        equ 0x0025
+P1SEL       equ 0x0026
+P1SEL2      equ 0x0041
+P1REN       equ 0x0027
+#endif
+#ifdef P2
+P2IN        equ 0x0028
+P2OUT       equ 0x0029
+P2DIR       equ 0x002A
+P2IFG       equ 0x002B
+P2IES       equ 0x002C
+P2IE        equ 0x002D
+P2SEL       equ 0x002E
+P2SEL2      equ 0x0042
+P2REN       equ 0x002F
+#endif
+
+;pins
+PIN7        equ 0x80
+PIN6        equ 0x40
+PIN5        equ 0x20
+PIN4        equ 0x10
+PIN3        equ 0x08
+PIN2        equ 0x04
+PIN1        equ 0x02
+PIN0        equ 0x01
