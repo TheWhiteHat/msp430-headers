@@ -1,4 +1,7 @@
-FLASH           equ 0xF800
+// Start of RAM
+#define SRAM 0x0200
+// End of RAM
+#define ERAM 0x0280
 RAM             equ 0x0200
 STACK           equ 0x0280
 ;interrupt vectors

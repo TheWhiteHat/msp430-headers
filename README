@@ -9,10 +9,6 @@ MSP430g2231.inc -- macros specific to the msp430g2231
 MSP430g2553.inc -- macros specific to the msp430g2553
 MSP430x2xx.inc -- macros for all of the x2xx line processors
 
-TODO:
-* #define values can be used in asm even if they have no value. #ifdef defines should be made more specific, ie P1 -> __MSP430x2xx_HAS_P1
-* create wiki page/separate files for TI docs and TODO
-
 list of data sheets where the values for the macros were found:
 http://www.ti.com/lit/gpn/msp430g2553
 http://www.ti.com/lit/gpn/msp430g2231
