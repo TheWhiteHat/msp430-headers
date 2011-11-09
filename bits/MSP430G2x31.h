@@ -1,9 +1,15 @@
-// Start of RAM
-#define SRAM 0x0200
-// End of RAM
+/*
+ * MSP430G2x31, MSP430G2x21 (slas694h)
+ * All citations reference a page number in the datasheet.
+ */
+
+/*
+ * Memory Organization (11)
+ *
+ * ERAM (DS): byte after RAM end address
+ */
 #define ERAM 0x0280
-RAM             equ 0x0200
-STACK           equ 0x0280
+
 ;interrupt vectors
 VECTORS         equ 0xFFE0
 RSTIFG          equ 0xFFFE
@@ -25,4 +31,4 @@ P1INT           equ 0xFFE4
 #define USI
 #define TA0
 #define TEMP
-.include "MSP430x2xx.inc"
+#include "bits/MSP430x2xx.h"

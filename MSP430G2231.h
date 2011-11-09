@@ -1,3 +1,3 @@
-#define CODEMEM 0xf800
+#define MMEM 0xf800
 
-.include "MSP430G2x31.h"
+.include "bits/MSP430G2x31.h"

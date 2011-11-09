@@ -17,7 +17,7 @@
  * MMEM (DS): Main Memory start address
  * IMEM (7.2): Information Memory start address
  * SRAM (1.4.2): RAM start address
- * ERAM (DS): RAM end address
+ * ERAM (DS): byte after RAM end address
  */
 #define IMEM 0x1000
 #define SRAM 0x0200
