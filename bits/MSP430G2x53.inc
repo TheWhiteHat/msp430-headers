@@ -20,4 +20,4 @@ P1INT           equ 0xFFE4
 #define TA1
 #define P1
 #define P2
-.include "MSP430x2xx.h"
+.include "MSP430x2xx.inc"

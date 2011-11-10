@@ -1,64 +1,29 @@
-/*
- * MSP430x2xx Family (slau144h)
- * This header assumes that device specific values have already been defined.
- * Each set of definitions will be minimally documented with a citation for the
- * section of the TI document of the same name as this header. Versions cited as
- * DS are device specific, and are defined in another header.
- * 
- * At this time CPUX(4) chips are not supported.
- */
+; MSP430x2xx Family (slau144h)
+; Note: CPUX(4) extensions are not supported.
 
-/*
- * Address Space (1.4)
- * The MSP430 architecture has one address space shared with special function
- * registers, peripherals, RAM, and Flash/ROM memory. Code access are always
- * performed on even addresses. Data can be accessed as bytes or words.
- *
- * MMEM (DS): Main Memory start address
- * IMEM (7.2): Information Memory start address
- * SRAM (1.4.2): RAM start address
- * ERAM (DS): byte after RAM end address
- */
-#define IMEM 0x1000
-#define SRAM 0x0200
+; Address Space (1.4)
+; MMEM DS: Main Memory start
+; ERAM DS: byte after last RAM address
+IMEM equ 0x1000 ; Information Memory start (7.2)
+RAM equ 0x0200 ; RAM start address (1.4.2)
 
-/*
- * CPU Registers (3.2)
- * The CPU incorporates sixteen 16-bit registers. R0, R1, R2, and R3 have
- * dedicated functions. R4 to R15 are working registers for general use.
- *
- * PC (3.2.1): Program Counter
- * SP (3.2.2): Stack Pointer
- * SR (3.2.3): Status Register
- * CGX (3.2.4): Constant Generator
- */
-#define PC r0
-#define SP r1
-#define SR r2
-#define CG1 r2
-#define CG2 r3
+; CPU Registers (3.2)
+PC  equ r0 ; Program Counter (3.2.1)
+SP  equ r1 ; Stack Pointer (3.2.2)
+SR  equ r2 ; Status Register (3.2.3)
+CG1 equ r2 ; Constant Generator 1 (3.2.4)
+CG2 equ r3 ; Constant Generator 2
 
-/*
- * Status Register Bits (3.2.3)
- * V: Overflow.
- * SGC1: System clock generator 1.
- * SGC0: System clock generator 0.
- * OSCOFF: Oscilator off.
- * CPUOFF: CPU off.
- * GIE: General Interrupt Enable
- * N: Negative bit.
- * Z: Zero bit.
- * C: Carry bit.
- */
-#define V 0x0100
-#define SCG1 0x0080
-#define SCG0 0x0040
-#define OSCOFF 0x0020
-#define CPUOFF 0x0010
-#define GIE 0x0008
-#define N 0x0004
-#define Z 0x0002
-#define C 0x0001
+; Status Register Bits (3.2.3)
+V      equ 0x0100 ; Overflow
+SCG1   equ 0x0080 ; System clock generator 1
+SCG0   equ 0x0040 ; System clock generator 0
+OSCOFF equ 0x0020 ; Oscilator off
+CPUOFF equ 0x0010 ; CPU off
+GIE    equ 0x0008 ; General Interrupt Enable
+N      equ 0x0004 ; Negative bit
+Z      equ 0x0002 ; Zero bit
+C      equ 0x0001 ; Carry bit
 
 ;wdt
 WDTCTL      equ 0x0120 ;address of control register
@@ -163,7 +128,6 @@ CCI         equ 0x0008
 OUT         equ 0x0004
 COV         equ 0x0002
 CCIFG       equ 0x0001
-
 ;port stuff
 ;P1
 #ifdef P1
